@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<plugin package="org.hyperic.plugin.demo" name="demo">
+    <server name="Demo Server">   		
+        <plugin type="autoinventory" class="Discovery"/>
+        <plugin type="measurement" class="Measurement"/>
+
+        <config>
+            <option name="process.ID" description="server id" default="1" optional="false"/>
+        </config>
+
+        <property name="template" value="demo:id=%process.ID%:${alias}" />
+        <metric name="Availability" indicator="true" />
+        <metric name="demo Metric" alias="demometric" indicator="true" />
+
+        <service name="Demo Service">
+            <config>
+                <option name="service.ID" description="service id" default="1" optional="false"/>
+            </config>
+            <property name="template" value="demo:id=%process.ID%,sid=%service.ID%:${alias}" />
+            <metric name="Availability" indicator="true" />
+            <metric name="demo Metric" alias="demometric" indicator="true" />
+        </service>
+        <help>
+            This is a HTML help piece that will be displayed to the user on the server configuration page to help him with the configuration of the resource or the configuration of the product if is needed.
+        </help>
+    </server>
+</plugin>
